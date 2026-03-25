@@ -1,0 +1,16 @@
+{
+  "apiVersion": "v1",
+  "kind": "Event",
+  "reason": "FailedScheduling",
+  "message": "0/3 nodes are available: 3 node(s) didn't match Pod's node affinity/selector. preemption: 0/3 nodes are available: 3 Preemption is not helpful for scheduling.",
+  "involvedObject": {
+    "kind": "Pod",
+    "name": "gpu-worker-batch-4f8a2",
+    "namespace": "ml-training"
+  },
+  "firstTimestamp": "2026-03-25T07:00:00Z",
+  "type": "Warning",
+  "source": {
+    "component": "default-scheduler"
+  }
+}
