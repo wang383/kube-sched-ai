@@ -28,7 +28,7 @@ flowchart TD
     end
 
     subgraph OPERATIONS["OPERATIONS 运维阶段"]
-        OPS["运维 - 占位符"]
+        OPS["运维"]
     end
 
     APPROVE1{{"用户审批"}}
