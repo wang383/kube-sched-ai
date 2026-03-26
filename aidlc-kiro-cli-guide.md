@@ -67,6 +67,26 @@ flowchart TD
     APPROVE5 --> END(["完成"])
 ```
 
+### AI-DLC 各阶段输出成果物
+
+| 阶段 | 输出成果物 | 存放路径 |
+|------|-----------|---------|
+| 工作区检测 | 工作区分析结果（项目类型、现有代码扫描） | `aidlc-docs/audit.md` |
+| 逆向工程 | 业务概览、架构文档、API 文档、组件清单、交互图、技术栈文档、依赖文档 | `aidlc-docs/inception/reverse-engineering/` |
+| 需求分析 | 需求澄清问卷、需求规格说明书（含功能需求列表） | `aidlc-docs/inception/requirements/` |
+| 用户故事 | 用户画像、用户故事（含验收标准） | `aidlc-docs/inception/user-stories/` |
+| 工作流规划 | 执行计划（阶段规划、风险评估、工作流可视化图） | `aidlc-docs/inception/plans/` |
+| 应用设计 | 组件定义、组件方法签名、服务编排、组件依赖矩阵、综合设计文档 | `aidlc-docs/inception/application-design/` |
+| 工作单元生成 | 工作单元拆分文档（模块划分、构建顺序） | `aidlc-docs/inception/application-design/unit-of-work.md` |
+| 功能设计 | 领域实体、业务逻辑模型、业务规则 | `aidlc-docs/construction/{unit}/functional-design/` |
+| NFR 需求 | NFR 需求文档、技术栈决策文档 | `aidlc-docs/construction/{unit}/nfr-requirements/` |
+| NFR 设计 | 逻辑组件设计、NFR 设计模式 | `aidlc-docs/construction/{unit}/nfr-design/` |
+| 基础设施设计 | 基础设施架构、云资源规格 | `aidlc-docs/construction/{unit}/infrastructure-design/` |
+| 代码生成 | 源代码、单元测试代码、代码摘要文档 | 项目根目录（代码）+ `aidlc-docs/construction/{unit}/code/`（摘要） |
+| 构建与测试 | 构建指令、单元测试指令、集成测试指令、性能测试指令、综合摘要 | `aidlc-docs/construction/build-and-test/` |
+| 全流程 | 审计日志（所有用户输入和 AI 响应的完整记录） | `aidlc-docs/audit.md` |
+| 全流程 | 工作流状态跟踪（阶段进度、检查点） | `aidlc-docs/aidlc-state.md` |
+
 ### 关键决策点：技术栈在哪个阶段选择？
 
 技术栈选择分两步：
@@ -125,8 +145,14 @@ cp -R ~/Downloads/aidlc-rules/aws-aidlc-rule-details .kiro/
 在项目目录下启动 kiro-cli：
 
 ```bash
-kiro-cli
+kiro-cli chat
 ```
+
+> 提示：可以加 `--trust-all-tools` 参数跳过所有工具调用的确认提示：
+> ```bash
+> kiro-cli chat --trust-all-tools
+> ```
+> 正常模式下，AI 每次执行文件操作或 bash 命令都会弹出 `Allow this action? [y/n/t]:` 确认。加了此参数后全程自动执行，适合演示或对流程已熟悉的场景。建议在 Git 仓库中使用，方便出问题时回退。
 
 进入交互界面后，执行以下命令查看当前已加载的上下文：
 
